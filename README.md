@@ -3,6 +3,9 @@
 A self-styled slot machine layout made with vanilla Javascript and HTML/CSS.
 It's a lightweight example of how you can do a slot machine.
 
+**It's designed to be able to calculate the result on the server** and just "Show" the result for the user.
+This approach is the only way against cheating! But you have to make some changes on your own. Currently the result is radomized in Javascript inside the [`setResult()`](https://github.com/flixrp/HTML-slot-machine-example/blob/8d988c06835f8ec1a19bca425e52e1089c3641a4/script.js#L59-L63) function.
+
 Credit to piJoe's [Codepen](https://codepen.io/piJoe/pen/BLwRza) for inspiration.
 
 ## Preview
