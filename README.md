@@ -1,5 +1,7 @@
 # HTML Slot machine skeleton example
 
+![GitHub](https://img.shields.io/github/license/flixrp/HTML-slot-machine-example)
+
 A self-styled slot machine layout made with vanilla Javascript and HTML/CSS.
 It's a lightweight example of how you can do a slot machine.
 
@@ -15,3 +17,7 @@ https://user-images.githubusercontent.com/44061123/224442965-085b31c4-513e-4480-
 ### Image
 
 ![preview1.png](./preview1.png)
+
+## Support us
+
+Be sure to leave a ⭐️ if you like the project :) Thank you! Be sure to contribute, if you're interested!
