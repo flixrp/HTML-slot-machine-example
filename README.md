@@ -6,7 +6,7 @@ It's a lightweight example of how you can do a slot machine.
 It was a prototype for an in-game FiveM casino that was never finished.
 
 **It's designed to be able to calculate the result on the server** and just "Show" the result for the user.
-This approach is the only way to prevent cheating! But you have to make some changes on your own. Currently, the result is randomized in Javascript inside the [`setResult()`](https://github.com/flixrp/HTML-slot-machine-example/blob/8d988c06835f8ec1a19bca425e52e1089c3641a4/script.js#L59-L63) function.
+This approach is the only way to prevent cheating! But you have to make some changes on your own. Currently, the result is randomized in Javascript inside the [`setResult()`](https://github.com/flixrp/HTML-slot-machine-example/blob/main/script.js#L79-L96) function.
 
 Credit to piJoe's [Codepen](https://codepen.io/piJoe/pen/BLwRza) for inspiration.
 
