@@ -1,9 +1,13 @@
+/*
+ * Some general styling
+ */
+
 * {
     box-sizing: border-box;
 }
 
 :root {
-    --icon-height: 100px;
+    --item-height: 100px;
 }
 
 body {
@@ -11,21 +15,16 @@ body {
     margin: 0;
 }
 
+/*
+ * Style the orange box
+ */
+
 .start-button {
     display: block;
     margin: 1em auto;
 }
 
-.icon {
-    width: 80px;
-    height: var(--icon-height);
-    display: block;
-    position: relative;
-
-    /*animation: wiggle 0.1s linear infinite;*/
-}
-
-.container {
+#container {
     background-color: #fd9b03;
     padding: 50px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
@@ -39,7 +38,7 @@ body {
 .window {
     position: relative;
     overflow: hidden;
-    height: calc(3 * var(--icon-height));
+    height: calc(3 * var(--item-height));
 }
 
 .window::before {
@@ -70,13 +69,26 @@ body {
     box-shadow: 0 6px 4px -5px #eca654 inset;
 }
 
+/*
+ * Reels and icon styling
+ */
+
+.icon {
+    width: 80px;
+    height: var(--item-height);
+    display: block;
+    position: relative;
+
+    /*animation: wiggle 0.1s linear infinite;*/
+}
+
 .outer-col {
     overflow-y: hidden;
     width: 100px;
     float: left;
     background-color: #eee;
     background-image: linear-gradient(#16013c, #741a5e, #430155, #16013c);
-    height: calc(var(--icon-height) * 3);
+    height: calc(var(--item-height) * 3);
 }
 
 .outer-spacer {
@@ -90,7 +102,7 @@ body {
 .col {
     padding: 0 10px;
     will-change: true;
-    transform: translateY(calc(-100% + var(--icon-height) * 3));
+    transform: translateY(calc(-100% + var(--item-height) * 3));
 }
 
 .col img {
@@ -101,60 +113,7 @@ body {
     z-index: 3;
 }
 
-/* shadow */
-/*.col .icon::after {
-    content: "";
-    clear: both;
-    display: block;
-    position: absolute;
-    top: 15px;
-    left: 5px;
-    z-index: 2;
-    width: 100%;
-    height: calc(100% - 20px);
-    background-size: contain;
-    filter: brightness(0%);
-    opacity: 0.5;
-}
-
-.col .icon[data-item="apple"]::after {
-    background-image: url('items/apple.png');
-}
-.col .icon[data-item="apricot"]::after {
-    background-image: url('items/apricot.png');
-}
-.col .icon[data-item="banana"]::after {
-    background-image: url('items/banana.png');
-}
-.col .icon[data-item="big_win"]::after {
-    background-image: url('items/big_win.png');
-}
-.col .icon[data-item="cherry"]::after {
-    background-image: url('items/cherry.png');
-}
-.col .icon[data-item="prages"]::after {
-    background-image: url('items/grapes.png');
-}
-.col .icon[data-item="lemon"]::after {
-    background-image: url('items/lemon.png');
-}
-.col .icon[data-item="lucky_seven"]::after {
-    background-image: url('items/lucky_seven.png');
-}
-.col .icon[data-item="orange"]::after {
-    background-image: url('items/orange.png');
-}
-.col .icon[data-item="pear"]::after {
-    background-image: url('items/pear.png');
-}
-.col .icon[data-item="strawberry"]::after {
-    background-image: url('items/strawberry.png');
-}
-.col .icon[data-item="watermelon"]::after {
-    background-image: url('items/watermelon.png');
-}*/
-
-/* blur effect */
+/* shadow effect behind the items */
 .col .icon::after {
     content: "";
     clear: both;
@@ -170,19 +129,23 @@ body {
     border-radius: 100%;
 }
 
-.container.spinning .outer-col:nth-of-type(2) .col {
+/*
+ * Spinning animation
+ */
+
+#container.spinning .outer-col:nth-of-type(2) .col {
     animation-delay: 0.01s;
 }
 
-.container.spinning .outer-col:nth-of-type(3) .col {
+#container.spinning .outer-col:nth-of-type(3) .col {
     animation-delay: 0.02s;
 }
 
-.container.spinning .outer-col:nth-of-type(4) .col {
+#container.spinning .outer-col:nth-of-type(4) .col {
     animation-delay: 0.03s;
 }
 
-.container.spinning .col {
+#container.spinning .col {
     animation-name: scroll;
     animation-iteration-count: 1;
     animation-timing-function: cubic-bezier(.65, .97, .72, 1);

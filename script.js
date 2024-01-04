@@ -1,53 +1,76 @@
-var icons = [
+const ICONS = [
     'apple', 'apricot', 'banana', 'big_win', 'cherry', 'grapes', 'lemon', 'lucky_seven', 'orange', 'pear', 'strawberry', 'watermelon',
 ];
 
-var slots;
-var cols;
-
-window.addEventListener('DOMContentLoaded', function(event) {
-    slots = document.querySelector('.container');
-    cols = document.querySelectorAll('.col');
-
-    let i = 0;
-    for (let col of cols) {
-        let str = '';
-        let firstThree = '';
-        for (let x = 0; x < 40 + (i * 3); x++) {
-            let icon = icons[Math.floor(Math.random() * icons.length)];
-            let part = '<div class="icon" data-item="' + icon + '"><img src="items/' + icon + '.png"></div>';
-            str += part
-            if (x < 3) firstThree += part;
-        }
-        col.innerHTML = str + firstThree;
-
-        ++i;
-    }
-
-    document.querySelector('input').focus();
-});
+/**
+ * @type {number} The minimum spin time in seconds
+ */
+const BASE_SPINNING_DURATION = 2.7;
 
 /**
+ * @type {number} The additional duration to the base duration for each row (in seconds).
+ * It makes the typical effect that the first reel ends, then the second, and so on...
+ */
+const COLUMN_SPINNING_DURATION = 0.3;
+
+
+var cols;
+
+
+window.addEventListener('DOMContentLoaded', function(event) {
+    cols = document.querySelectorAll('.col');
+
+    setInitialItems();
+});
+
+function setInitialItems() {
+    let baseItemAmount = 40;
+
+    for (let i = 0; i < cols.length; ++i) {
+        let col = cols[i];
+        let amountOfItems = baseItemAmount + (i * 3); // Increment the amount for each column
+        let elms = '';
+        let firstThreeElms = '';
+
+        for (let x = 0; x < amountOfItems; x++) {
+            let icon = getRandomIcon();
+            let item = '<div class="icon" data-item="' + icon + '"><img src="items/' + icon + '.png"></div>';
+            elms += item;
+
+            if (x < 3) firstThreeElms += item; // Backup the first three items because the last three must be the same
+        }
+        col.innerHTML = elms + firstThreeElms;
+    }
+}
+
+/**
+ * Called when the start-button is pressed.
+ *
  * @param elem The button itself
  */
 function spin(elem) {
-    let baseDuration = 2.7 + randomDuration();
-    let incrementingEachStep = 0.3;
+    let duration = BASE_SPINNING_DURATION + randomDuration();
 
-    for (let col of cols) {
-        baseDuration += incrementingEachStep + randomDuration();
-        col.style.animationDuration = baseDuration + "s";
+    for (let col of cols) { // set the animation duration for each column
+        duration += COLUMN_SPINNING_DURATION + randomDuration();
+        col.style.animationDuration = duration + "s";
     }
 
+    // disable the start-button
     elem.setAttribute('disabled', true);
-    slots.classList.toggle('spinning', true);
-    window.setTimeout(setResult, 1500);
+
+    // set the spinning class so the css animation starts to play
+    document.getElementById('container').classList.add('spinning');
+
+    // set the result delayed
+    // this would be the right place to request the combination from the server
+    window.setTimeout(setResult, BASE_SPINNING_DURATION * 1000 / 2);
 
     window.setTimeout(function () {
-        slots.classList.toggle('spinning', false);
+        // after the spinning is done, remove the class and enable the button again
+        document.getElementById('container').classList.remove('spinning');
         elem.removeAttribute('disabled');
-        elem.focus();
-    }.bind(elem), (baseDuration + 0.2) * 1000);
+    }.bind(elem), duration * 1000);
 }
 
 /**
@@ -56,17 +79,24 @@ function spin(elem) {
 function setResult() {
     for (let col of cols) {
 
+        // generate 3 random items
         let results = [
-            icons[Math.floor(Math.random() * icons.length)],
-            icons[Math.floor(Math.random() * icons.length)],
-            icons[Math.floor(Math.random() * icons.length)]
+            getRandomIcon(),
+            getRandomIcon(),
+            getRandomIcon()
         ];
-        let icon = col.querySelectorAll('.icon img');
+
+        let icons = col.querySelectorAll('.icon img');
+        // replace the first and last three items of each column with the generated items
         for (let x = 0; x < 3; x++) {
-            icon[x].setAttribute('src', 'items/' + results[x] + '.png');
-            icon[(icon.length - 3) + x].setAttribute('src', 'items/' + results[x] + '.png');
+            icons[x].setAttribute('src', 'items/' + results[x] + '.png');
+            icons[(icons.length - 3) + x].setAttribute('src', 'items/' + results[x] + '.png');
         }
     }
+}
+
+function getRandomIcon() {
+    return ICONS[Math.floor(Math.random() * ICONS.length)];
 }
 
 /**
