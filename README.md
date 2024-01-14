@@ -5,7 +5,7 @@
 A self-styled slot machine layout made with vanilla Javascript and HTML/CSS.
 It's a lightweight example of how you can do a slot machine.
 
-This ia a prototype for an in-game FiveM casino that was never completed.
+This was a prototype for an in-game FiveM casino that was never completed.
 
 **It's designed to be able to calculate the result on the server** and just "Show" the result for the user.
 This approach is the only way to prevent cheating! But you have to make some changes on your own. Currently, the result is randomized in Javascript inside the [`setResult()`](https://github.com/flixrp/HTML-slot-machine-example/blob/main/script.js#L79-L96) function.
