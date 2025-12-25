@@ -16,6 +16,10 @@ Credit to piJoe's [Codepen](https://codepen.io/piJoe/pen/BLwRza) for inspiration
 
 [![preview.png](https://github.com/flixrp/HTML-slot-machine-example/assets/44061123/0cc0d810-d1d0-413c-8c38-2e036ed1a8d0)](https://user-images.githubusercontent.com/44061123/224442965-085b31c4-513e-4480-a1ea-c36dbac3561a.mp4)
 
+## Try it out
+
+You can try it out on our [Github Pages](https://flixrp.github.io/HTML-slot-machine-example/) site.
+
 ## The concept behind it
 
 The slot machine has around 40 spinning items that move down through a CSS animation.
